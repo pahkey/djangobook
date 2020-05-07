@@ -1,6 +1,14 @@
 {% extends "base.html" %}
 {% block content %}
 <div class="container my-3">
+    <div class="row">
+        <div class="col-4">
+            <h4>로그인</h4>
+        </div>
+        <div class="col-8 text-right">
+            <span>또는 <a href="{% url 'common:signup' %}">계정을 만드세요.</a></span>
+        </div>
+    </div>
     <form method="post" class="post-form" action="{% url 'common:login' %}">
         {% csrf_token %}
         {% include "form_errors.html" %}
