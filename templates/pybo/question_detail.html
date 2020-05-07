@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load pybo_filter %}
 {% block content %}
 <div class="container my-3">
     <!-- 사용자오류 표시 -->
@@ -20,7 +21,7 @@
         <div class="col-11"> <!-- 질문영역 -->
             <div class="card">
                 <div class="card-body">
-                    <div class="card-text" style="white-space: pre-line;">{{ question.content }}</div>
+                    <div class="card-text">{{ question.content|mark }}</div>
                     <div class="d-flex justify-content-end">
                         {% if question.modify_date %}
                         <div class="badge badge-light p-2 text-left mx-3">
@@ -84,7 +85,7 @@
         <div class="col-11">  <!-- 답변영역 -->
             <div class="card">
                 <div class="card-body">
-                    <div class="card-text" style="white-space: pre-line;">{{ answer.content }}</div>
+                    <div class="card-text">{{ answer.content|mark }}</div>
                     <div class="d-flex justify-content-end">
                         {% if answer.modify_date %}
                         <div class="badge badge-light p-2 text-left mx-3">
