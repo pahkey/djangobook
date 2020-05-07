@@ -25,6 +25,32 @@
                    data-uri="{% url 'pybo:question_delete' question.id  %}">삭제</a>
             </div>
             {% endif %}
+            <!-- 질문 댓글 Start -->
+            {% if question.comment_set.count > 0 %}
+            <div class="mt-3">
+            {% for comment in question.comment_set.all %}
+                <div class="comment py-2 text-muted">
+                    <span style="white-space: pre-line;">{{ comment.content }}</span>
+                    <span>
+                        - {{ comment.author }}, {{ comment.create_date }}
+                        {% if comment.modify_date %}
+                        (수정:{{ comment.modify_date }})
+                        {% endif %}
+                    </span>
+                    {% if request.user == comment.author %}
+                    <a href="{% url 'pybo:comment_modify_question' comment.id  %}" class="small">수정</a>,
+                    <a href="#" class="small delete"
+                       data-uri="{% url 'pybo:comment_delete_question' comment.id  %}">삭제</a>
+                    {% endif %}
+                </div>
+            {% endfor %}
+            </div>
+            {% endif %}
+            <div>
+                <a href="{% url 'pybo:comment_create_question' question.id  %}"
+                   class="small"><small>댓글 추가 ..</small></a>
+            </div>
+            <!-- 질문 댓글 End -->
         </div>
     </div>
     <h5 class="border-bottom my-3 py-2">{{question.answer_set.count}}개의 답변이 있습니다.</h5>
@@ -52,7 +78,31 @@
                    data-uri="{% url 'pybo:answer_delete' answer.id  %}">삭제</a>
             </div>
             {% endif %}
+            {% if answer.comment_set.count > 0 %}
+            <div class="mt-3">
+            {% for comment in answer.comment_set.all %}
+                <div class="comment py-2 text-muted">
+                    <span style="white-space: pre-line;">{{ comment.content }}</span>
+                    <span>
+                        - {{ comment.author }}, {{ comment.create_date }}
+                        {% if comment.modify_date %}
+                        (수정:{{ comment.modify_date }})
+                        {% endif %}
+                    </span>
+                    {% if request.user == comment.author %}
+                    <a href="{% url 'pybo:comment_modify_answer' comment.id  %}" class="small">수정</a>,
+                    <a href="#" class="small delete"
+                       data-uri="{% url 'pybo:comment_delete_answer' comment.id  %}">삭제</a>
+                    {% endif %}
+                </div>
+            {% endfor %}
             </div>
+            {% endif %}
+            <div>
+                <a href="{% url 'pybo:comment_create_answer' answer.id  %}"
+                   class="small"><small>댓글 추가 ..</small></a>
+            </div>
+        </div>
     </div>
     {% endfor %}
     <form action="{% url 'pybo:answer_create' question.id %}" method="post" class="my-3">
