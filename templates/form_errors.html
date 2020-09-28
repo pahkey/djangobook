@@ -3,7 +3,7 @@
         {% for error in field.errors %}  <!-- 필드 오류를 출력한다. -->
             <div class="alert alert-danger">
                 <strong>{{ field.label }}</strong>
-                {{ field.errors }}
+                {{ error }}
             </div>
         {% endfor %}
     {% endfor %}
