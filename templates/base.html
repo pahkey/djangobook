@@ -16,11 +16,12 @@
 <!-- 기본 템플릿 안에 삽입될 내용 Start -->
 {% block content %}
 {% endblock %}
-<!-- 기본 템플릿 안에 삽입될 내용 End -->
+{% comment %} jquery, Bootstrap js 버전 때문에 기능이 제대로 되지 않아 
+jquery 3.5.1, Bootstrap js 4.5.0을 저장소에서 가지고 옵니다. {% endcomment %}
 <!-- jQuery JS -->
-<script src="{% static 'jquery-3.4.1.min.js' %}"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <!-- Bootstrap JS -->
-<script src="{% static 'bootstrap.min.js' %}"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 <!-- 자바스크립트 Start -->
 {% block script %}
 {% endblock %}
